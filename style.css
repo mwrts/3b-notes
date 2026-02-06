@@ -421,90 +421,65 @@ mark {
     background-color: var(--accent-primary);
 }
 
-/* Mobile Responsiveness */
-.mobile-only {
-    display: none;
-}
-
+/* Mobile Compatibility */
 @media (max-width: 768px) {
-    .mobile-only {
-        display: flex;
+    body {
+        height: auto;
+        overflow: auto;
+    }
+
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
     }
 
     .sidebar {
-        position: fixed;
-        left: -300px;
+        width: 100%;
+        height: auto;
+        flex-shrink: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--sidebar-border);
+        box-shadow: none;
+        position: sticky;
         top: 0;
-        bottom: 0;
-        width: 300px;
-        z-index: 1000;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
-        transition: left 0.3s ease;
+        z-index: 100;
     }
 
-    .app-container.sidebar-open .sidebar {
-        left: 0;
+    /* Ensure header takes full width and is clickable for drill-down/up */
+    .sidebar-header {
+        cursor: pointer;
+        background-color: var(--sidebar-bg);
+        z-index: 101;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.1rem;
+    }
+
+    /* Collapsible file tree on mobile */
+    .file-tree {
+        max-height: 40vh;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease;
+        overflow-y: auto;
+        border-top: 1px solid var(--sidebar-border);
+    }
+
+    .file-tree.mobile-collapsed {
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-top: none;
+        overflow: hidden;
     }
 
     .content-area {
-        padding: 1rem;
-        padding-top: 5rem;
-        /* Space for mobile header */
-    }
-
-    .mobile-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4rem;
-        background-color: var(--bg-color);
-        border-bottom: 1px solid var(--sidebar-border);
-        display: flex;
-        align-items: center;
-        padding: 0 1rem;
-        z-index: 100;
-        gap: 1rem;
-    }
-
-    .mobile-header span {
-        font-weight: 700;
-        color: var(--accent-primary);
-    }
-
-    #mobile-menu-toggle,
-    #mobile-close {
-        background: transparent;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--text-color);
-        cursor: pointer;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-    }
-
-    #mobile-menu-toggle:hover,
-    #mobile-close:hover {
-        background-color: var(--accent-hover);
-    }
-
-    .sidebar-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(2px);
-        z-index: 900;
-    }
-
-    .app-container.sidebar-open .sidebar-overlay {
-        display: block;
+        width: 100%;
+        padding: 1.5rem 1rem;
+        height: auto;
+        overflow: visible;
+        /* Let body handle scroll */
+        flex: 1;
     }
 
     .markdown-body {
@@ -512,16 +487,14 @@ mark {
     }
 
     .markdown-body h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
+    }
+
+    .markdown-body h2 {
+        font-size: 1.4em;
     }
 
     .empty-state {
         height: 60vh;
-    }
-
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
     }
 }

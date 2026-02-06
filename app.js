@@ -15,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', newTheme);
     });
 
+    // Mobile Sidebar Toggle Logic
+    const sidebarHeader = document.querySelector('.sidebar-header');
+    if (sidebarHeader) {
+        sidebarHeader.addEventListener('click', (e) => {
+            // Only trigger if we are in mobile view (check implicitly by window width or simpler: just toggle constraint class)
+            if (window.innerWidth <= 768) {
+                // Ensure we don't trigger when clicking the theme toggle
+                if (e.target.closest('#theme-toggle')) return;
+
+                fileTree.classList.toggle('mobile-collapsed');
+            }
+        });
+    }
+
     // File Mapping for WikiLinks
     const fileMap = new Map(); // Name -> Path
 
@@ -135,36 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.file-item').forEach(el => el.classList.remove('active'));
                     fileLink.classList.add('active');
                     loadNote(item.path);
-                    // Close sidebar on mobile after selection
-                    document.querySelector('.app-container').classList.remove('sidebar-open');
+
+                    // Auto-collapse on mobile
+                    if (window.innerWidth <= 768) {
+                        fileTree.classList.add('mobile-collapsed');
+                    }
                 });
 
                 container.appendChild(fileLink);
             }
-        });
-    }
-
-    // Mobile Sidebar Logic
-    const appContainer = document.querySelector('.app-container');
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    const menuClose = document.getElementById('mobile-close');
-    const overlay = document.getElementById('sidebar-overlay');
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            appContainer.classList.add('sidebar-open');
-        });
-    }
-
-    if (menuClose) {
-        menuClose.addEventListener('click', () => {
-            appContainer.classList.remove('sidebar-open');
-        });
-    }
-
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            appContainer.classList.remove('sidebar-open');
         });
     }
 
