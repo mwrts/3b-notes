@@ -375,10 +375,20 @@ mark {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 75vh;
     color: var(--folder-text);
     text-align: center;
     opacity: 0.6;
+    position: relative;
+}
+
+.footer-credit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    font-weight: 600;
 }
 
 /* Scrollbar */
