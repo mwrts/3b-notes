@@ -5,6 +5,7 @@
 ## referências globais
 - norte **magnético** **$\mathbf {\ne}$** norte **geográfico**
 ![[rosa dos ventos.png|300]]
+
 ---
 ## movimento de rotação
 

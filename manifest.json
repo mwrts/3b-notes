@@ -120,7 +120,18 @@
   {
     "type": "directory",
     "name": "midia",
-    "children": []
+    "children": [
+      {
+        "type": "file",
+        "name": "horario.html",
+        "path": "midia/horario.html"
+      },
+      {
+        "type": "file",
+        "name": "rosa dos ventos.png",
+        "path": "midia/rosa dos ventos.png"
+      }
+    ]
   },
   {
     "type": "directory",

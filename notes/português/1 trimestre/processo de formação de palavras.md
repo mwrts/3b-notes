@@ -1,5 +1,3 @@
-#port #escola #trim1 
-
 existem dois principais tipos de processos de formação de palavras
 
 - derivação

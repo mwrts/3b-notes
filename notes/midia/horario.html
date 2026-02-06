@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+       
+    <meta charset="UTF-8">
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>horário escolar</title>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+        body {
+            background-color: #f2f2e9;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #556b55;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1100px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        h2 {
+            text-align: center;
+            color: #8da390;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-transform: lowercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0d0;
+            table-layout: fixed;
+            /* ensures equal column widths */
+        }
+
+        th {
+            background-color: #acc2b1;
+            color: white;
+            font-weight: 600;
+            padding: 18px 10px;
+            text-transform: lowercase;
+            font-size: 0.95em;
+            border: none;
+        }
+
+        td {
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0e0;
+            font-size: 0.9em;
+            word-wrap: break-word;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .time-col {
+            background-color: #fafaf5;
+            font-weight: 600;
+            color: #8da390;
+            width: 120px;
+            /* fixed width for time */
+            border-right: 1px solid #f0f0e0;
+        }
+
+        .intervalo {
+            background-color: #f8f8f0 !important;
+            font-weight: 600;
+            color: #b5b59a;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+            font-size: 0.85em;
+        }
+
+        tr:nth-child(even):not(.intervalo) {
+            background-color: #fdfdfb;
+        }
+
+        .subject {
+            display: block;
+            font-weight: 600;
+            color: #556b55;
+        }
+
+        .teacher {
+            display: block;
+            font-size: 0.8em;
+            color: #a3b1a3;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+        <div class="container">
+                <h2>horário das aulas</h2>
+                <table>
+                        <thead>
+                                <tr>
+                                        <th style="width: 120px;">horário</th>
+                                        <th>segunda</th>
+                                        <th>terça</th>
+                                        <th>quarta</th>
+                                        <th>quinta</th>
+                                        <th>sexta</th>
+                                    </tr>
+                            </thead>
+                        <tbody>
+                                <tr>
+                                        <td class="time-col">07:15 - 08:00</td>
+                                        <td><span class="subject">biologia</span><span class="teacher">flávio</span>
+                    </td>
+                                        <td><span class="subject">sociologia</span><span class="teacher">paulo</span>
+                    </td>
+                                        <td><span class="subject">geometria</span><span class="teacher">nico</span></td>
+                                        <td><span class="subject">física</span><span class="teacher">rubens</span></td>
+                                        <td><span class="subject">física</span><span class="teacher">marcos r.</span>
+                    </td>
+                                    </tr>
+                                <tr>
+                                        <td class="time-col">08:00 - 08:45</td>
+                                        <td><span class="subject">geografia</span><span
+                            class="teacher">casagrande</span></td>
+                                        <td><span class="subject">biologia</span><span class="teacher">cristiano</span>
+                    </td>
+                                        <td><span class="subject">redação</span><span class="teacher">josiane</span>
+                    </td>
+                                        <td><span class="subject">geografia</span><span
+                            class="teacher">casagrande</span></td>
+                                        <td><span class="subject">arte</span><span class="teacher">jéssica</span></td>
+                                    </tr>
+                                <tr class="intervalo">
+                                        <td class="time-col">08:45 - 09:00</td>
+                                        <td colspan="5">intervalo</td>
+                                    </tr>
+                                <tr>
+                                        <td class="time-col">09:00 - 09:45</td>
+                                        <td><span class="subject">ed. física</span><span class="teacher">andré</span>
+                    </td>
+                                        <td><span class="subject">química</span><span class="teacher">lui</span></td>
+                                        <td><span class="subject">geometria</span><span class="teacher">nico</span></td>
+                                        <td><span class="subject">biologia</span><span class="teacher">flávio</span>
+                    </td>
+                                        <td><span class="subject">álgebra</span><span class="teacher">hey</span></td>
+                                    </tr>
+                                <tr>
+                                        <td class="time-col">09:45 - 10:30</td>
+                                        <td><span class="subject">gramática</span><span class="teacher">marcinéia</span>
+                    </td>
+                                        <td><span class="subject">geografia</span><span class="teacher">gilmara</span>
+                    </td>
+                                        <td><span class="subject">história</span><span class="teacher">filipe</span>
+                    </td>
+                                        <td><span class="subject">literatura</span><span class="teacher">hellyery</span>
+                    </td>
+                                        <td><span class="subject">álgebra</span><span class="teacher">hey</span></td>
+                                    </tr>
+                                <tr class="intervalo">
+                                        <td class="time-col">10:30 - 10:45</td>
+                                        <td colspan="5">intervalo</td>
+                                    </tr>
+                                <tr>
+                                        <td class="time-col">10:45 - 11:30</td>
+                                        <td><span class="subject">inglês</span><span class="teacher">raquel</span></td>
+                                        <td><span class="subject">química</span><span class="teacher">lui</span></td>
+                                        <td><span class="subject">química</span><span class="teacher">onéssimo
+                            jr.</span></td>
+                                        <td><span class="subject">física</span><span class="teacher">rubens</span></td>
+                                        <td><span class="subject">física</span><span class="teacher">marcos r.</span>
+                    </td>
+                                    </tr>
+                                <tr>
+                                        <td class="time-col">11:30 - 12:15</td>
+                                        <td><span class="subject">história</span><span class="teacher">filipe</span>
+                    </td>
+                                        <td><span class="subject">filosofia</span><span class="teacher">guilherme</span>
+                    </td>
+                                        <td><span class="subject">redação</span><span class="teacher">josiane</span>
+                    </td>
+                                        <td><span class="subject">gramática</span><span class="teacher">marcinéia</span>
+                    </td>
+                                        <td><span class="subject">química</span><span class="teacher">onéssimo
+                            jr.</span></td>
+                                    </tr>
+                            </tbody>
+                    </table>
+            </div>
+
+</body>
+
+</html>

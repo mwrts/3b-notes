@@ -1,5 +1,3 @@
-#port #escola #trim1 
-
 as classes gramaticais (ou categorias morfológicas) são a forma como as palavras são classificadas de acordo com a função que exercem. são 10 ao todo, divididas entre as que mudam (variáveis) e as que não mudam (invariáveis).
 
 ---

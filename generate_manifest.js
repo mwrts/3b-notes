@@ -18,7 +18,7 @@ function getFiles(dir) {
                 name: file,
                 children: getFiles(filePath)
             });
-        } else if (file.endsWith('.md')) {
+        } else if (file.match(/\.(md|html|png|jpg|jpeg|gif)$/i)) {
             results.push({
                 type: 'file',
                 name: file,

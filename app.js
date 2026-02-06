@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewer = document.getElementById('markdown-viewer');
     const themeToggle = document.getElementById('theme-toggle');
 
-    // Theme Handling
-    const storedTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    // Theme Handling (Default to Light if not set)
+    const storedTheme = localStorage.getItem('theme') || 'light';
 
     document.documentElement.setAttribute('data-theme', storedTheme);
 
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('manifest.json')
         .then(response => {
             if (!response.ok) {
-                // Return empty if not found (first run or error)
                 return [];
             }
             return response.json();
@@ -45,10 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildFileMap(items) {
         items.forEach(item => {
             if (item.type === 'file') {
-                // Store "Filename" -> "path/to/Filename.md"
-                // Remove extension for key
-                const baseName = item.name.replace(/\.md$/i, '');
-                fileMap.set(baseName, item.path);
+                // Map full name "foo.png" -> path
+                fileMap.set(item.name, item.path);
+                // Map basename "foo" -> path
+                const baseName = item.name.replace(/\.[^/.]+$/, "");
+                if (baseName !== item.name) {
+                    fileMap.set(baseName, item.path);
+                }
             } else if (item.children) {
                 buildFileMap(item.children);
             }
@@ -56,26 +57,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function buildSidebar(items, container) {
-        const ul = document.createElement('div');
-        ul.className = 'folder-group';
+        // Sort items: directories first, then files
+        items.sort((a, b) => {
+            if (a.type === b.type) return a.name.localeCompare(b.name);
+            return a.type === 'directory' ? -1 : 1;
+        });
 
         items.forEach(item => {
             if (item.type === 'directory') {
                 const folderDiv = document.createElement('div');
                 folderDiv.className = 'folder';
-                // By default folders are closed
 
                 const header = document.createElement('div');
                 header.className = 'folder-header';
-                header.innerHTML = `
-                    <svg class="folder-arrow" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 17l5-5-5-5v10z"/>
-                    </svg>
-                    <span>${item.name}</span>
-                `;
+
+                // Caret Icon
+                const caret = document.createElement('i');
+                caret.className = 'ph ph-caret-right folder-arrow';
+
+                // Folder Icon
+                const icon = document.createElement('i');
+                icon.className = 'ph ph-folder folder-icon';
+
+                // Name Span
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = item.name;
+
+                header.appendChild(caret);
+                header.appendChild(icon);
+                header.appendChild(nameSpan);
+
                 header.addEventListener('click', (e) => {
                     e.stopPropagation();
                     folderDiv.classList.toggle('open');
+                    // Toggle Caret
+                    if (folderDiv.classList.contains('open')) {
+                        caret.classList.replace('ph-caret-right', 'ph-caret-down');
+                        icon.classList.replace('ph-folder', 'ph-folder-open');
+                    } else {
+                        caret.classList.replace('ph-caret-down', 'ph-caret-right');
+                        icon.classList.replace('ph-folder', 'ph-folder');
+                    }
                 });
 
                 const content = document.createElement('div');
@@ -94,16 +116,24 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (item.type === 'file') {
                 const fileLink = document.createElement('a');
                 fileLink.className = 'file-item';
-                fileLink.textContent = item.name.replace('.md', ''); // specific aesthetic preference? usually sidebar shows nice names
                 fileLink.href = '#';
                 fileLink.dataset.path = item.path;
 
+                // Determine icon based on extension
+                let iconClass = 'ph-file-text';
+                const lowerName = item.name.toLowerCase();
+                if (lowerName.endsWith('.png') || lowerName.endsWith('.jpg') || lowerName.endsWith('.jpeg') || lowerName.endsWith('.gif')) {
+                    iconClass = 'ph-image';
+                } else if (lowerName.endsWith('.html')) {
+                    iconClass = 'ph-globe';
+                }
+
+                fileLink.innerHTML = `<i class="ph ${iconClass} file-icon"></i> <span>${item.name.replace(/\.[^/.]+$/, "")}</span>`;
+
                 fileLink.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Set active class
                     document.querySelectorAll('.file-item').forEach(el => el.classList.remove('active'));
                     fileLink.classList.add('active');
-
                     loadNote(item.path);
                 });
 
@@ -113,12 +143,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadNote(path) {
-        // Path is relative to notes/
-        // But we need to fetch it. Markdown files are static files served by GitHub Pages.
-        // We assume 'notes/' directory is served at root/notes/
-
         const fetchPath = `notes/${path}`;
+        const lowerPath = path.toLowerCase();
 
+        // Check file type
+        if (lowerPath.endsWith('.png') || lowerPath.endsWith('.jpg') || lowerPath.endsWith('.jpeg') || lowerPath.endsWith('.gif')) {
+            viewer.innerHTML = `
+                <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <img src="${fetchPath}" alt="${path}" style="max-width: 100%; max-height: 80vh; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
+            `;
+            return;
+        }
+
+        if (lowerPath.endsWith('.html')) {
+            fetch(fetchPath)
+                .then(res => {
+                    if (!res.ok) throw new Error('File not found');
+                    return res.text();
+                })
+                .then(html => {
+                    // Render HTML directly. Warning: XSS risk if self-notes are malicious.
+                    // Assuming trusted environment.
+                    viewer.innerHTML = html;
+                })
+                .catch(err => {
+                    viewer.innerHTML = `<h1>Erro</h1><p>Não foi possível carregar o arquivo HTML: ${err.message}</p>`;
+                });
+            return;
+        }
+
+        // Default: Markdown
         fetch(fetchPath)
             .then(res => {
                 if (!res.ok) throw new Error('File not found');
@@ -133,10 +188,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderMarkdown(md) {
-        // 1. Pre-process WikiLinks [[Link]]
-        // Replacer callback
-        const processedMd = md.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
-            // p1 is "LinkName" or "LinkName|Label"
+        let processedMd = md;
+
+        // 1. Pre-process Image Embeds ![[Link|Size]]
+        processedMd = processedMd.replace(/!\[\[(.*?)\]\]/g, (match, p1) => {
+            let linkTarget = p1;
+            let linkMeta = '';
+
+            if (p1.includes('|')) {
+                const parts = p1.split('|');
+                linkTarget = parts[0];
+                linkMeta = parts[1];
+            }
+
+            const targetPath = fileMap.get(linkTarget);
+
+            if (targetPath) {
+                let style = '';
+                // Handle size (e.g., "300" or "300x200" - simplistic handling for width)
+                if (/^\d+$/.test(linkMeta)) {
+                    style = `width: ${linkMeta}px; max-width: 100%;`;
+                }
+
+                return `<img src="notes/${targetPath}" alt="${linkTarget}" style="${style}" class="embedded-image">`;
+            }
+            // If not found, show broken image
+            return `<span class="broken-image" style="color:red; font-size:0.8em;">⚠️ Imagem não encontrada: ${linkTarget}</span>`;
+        });
+
+        // 2. Pre-process WikiLinks [[Link]]
+        processedMd = processedMd.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
             let linkTarget = p1;
             let linkLabel = p1;
 
@@ -146,34 +227,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 linkLabel = parts[1];
             }
 
-            // Find target in map
             const targetPath = fileMap.get(linkTarget);
 
             if (targetPath) {
-                // We do a hack: we use a specific class to handle these clicks specifically if we wanted,
-                // but since we render generic HTML, we can just use href="#" and onclick handler 
-                // BUT adding onclick handler to string is messy.
-                // Better: data attribute.
                 return `<a href="#" class="wiki-link" data-target="${targetPath}">${linkLabel}</a>`;
             } else {
                 return `<span class="broken-link" title="Not found">${linkLabel}</span>`;
             }
         });
 
-        // 2. Marked parse
+        // 3. Pre-process Highlights ==text==
+        processedMd = processedMd.replace(/==(.*?)==/g, '<mark>$1</mark>');
+
+        // 4. Marked parse
         viewer.innerHTML = marked.parse(processedMd);
 
-        // 3. Attach handlers to new links
+        // 5. Attach handlers to new links
         viewer.querySelectorAll('.wiki-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = link.dataset.target;
                 loadNote(target);
-                // Also update sidebar active state? (Optional, might be slow to search DOM)
             });
         });
 
-        // 4. MathJax Typeset
+        // 6. MathJax Typeset
         if (window.MathJax) {
             window.MathJax.typesetPromise([viewer]).then(() => {
                 // MathJax done
