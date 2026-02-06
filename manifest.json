@@ -1,0 +1,187 @@
+[
+  {
+    "type": "directory",
+    "name": "biologia",
+    "children": [
+      {
+        "type": "directory",
+        "name": "cris",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "flavio",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": []
+          },
+          {
+            "type": "file",
+            "name": "métodos científicos.md",
+            "path": "biologia/flavio/métodos científicos.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "física",
+    "children": [
+      {
+        "type": "directory",
+        "name": "mr",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "mecânica.md",
+                "path": "física/mr/1 trimestre/mecânica.md"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "rubens",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "óptica.md",
+                "path": "física/rubens/1 trimestre/óptica.md"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "geografia",
+    "children": [
+      {
+        "type": "directory",
+        "name": "cg",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "cartografia.md",
+                "path": "geografia/cg/1 trimestre/cartografia.md"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "gilmara",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "história",
+    "children": [
+      {
+        "type": "directory",
+        "name": "1 trimestre",
+        "children": [
+          {
+            "type": "file",
+            "name": "antiguidade.md",
+            "path": "história/1 trimestre/antiguidade.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "midia",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "português",
+    "children": [
+      {
+        "type": "directory",
+        "name": "1 trimestre",
+        "children": [
+          {
+            "type": "file",
+            "name": "classes gramaticais.md",
+            "path": "português/1 trimestre/classes gramaticais.md"
+          },
+          {
+            "type": "file",
+            "name": "processo de formação de palavras.md",
+            "path": "português/1 trimestre/processo de formação de palavras.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "química",
+    "children": [
+      {
+        "type": "directory",
+        "name": "lui",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "propriedades da matéria.md",
+                "path": "química/lui/1 trimestre/propriedades da matéria.md"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "one",
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "introdução a química orgânica.md",
+                "path": "química/one/1 trimestre/introdução a química orgânica.md"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
