@@ -420,3 +420,108 @@ mark {
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--accent-primary);
 }
+
+/* Mobile Responsiveness */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -300px;
+        top: 0;
+        bottom: 0;
+        width: 300px;
+        z-index: 1000;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+    }
+
+    .app-container.sidebar-open .sidebar {
+        left: 0;
+    }
+
+    .content-area {
+        padding: 1rem;
+        padding-top: 5rem;
+        /* Space for mobile header */
+    }
+
+    .mobile-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4rem;
+        background-color: var(--bg-color);
+        border-bottom: 1px solid var(--sidebar-border);
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        z-index: 100;
+        gap: 1rem;
+    }
+
+    .mobile-header span {
+        font-weight: 700;
+        color: var(--accent-primary);
+    }
+
+    #mobile-menu-toggle,
+    #mobile-close {
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        cursor: pointer;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    #mobile-menu-toggle:hover,
+    #mobile-close:hover {
+        background-color: var(--accent-hover);
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 900;
+    }
+
+    .app-container.sidebar-open .sidebar-overlay {
+        display: block;
+    }
+
+    .markdown-body {
+        font-size: 1rem;
+    }
+
+    .markdown-body h1 {
+        font-size: 1.8em;
+    }
+
+    .empty-state {
+        height: 60vh;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
