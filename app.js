@@ -239,7 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Pre-process Highlights ==text==
         processedMd = processedMd.replace(/==(.*?)==/g, '<mark>$1</mark>');
 
-        // 4. Marked parse
+        // 4. Pre-process Comments %%text%%
+        processedMd = processedMd.replace(/%%[\s\S]*?%%/g, '');
+
+        // 5. Marked parse
         viewer.innerHTML = marked.parse(processedMd);
 
         // 5. Attach handlers to new links
