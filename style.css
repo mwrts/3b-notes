@@ -421,7 +421,7 @@ mark {
     background-color: var(--accent-primary);
 }
 
-/* Mobile Compatibility */
+/* Mobile Compatibility 2*/
 @media (max-width: 768px) {
     body {
         height: auto;
