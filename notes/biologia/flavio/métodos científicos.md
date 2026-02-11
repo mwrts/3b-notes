@@ -16,3 +16,7 @@ altera apenas o fator a ser testado
 - ex: água, pH, temperatura, oxigênio
 ## grupo controle
 não altera nenhum fator; verifica a existência de placebo
+
+---
+# hipótese
+- afirma uma situação (pode ser uma afirmação negativa, como "o cachorro NÃO está doente")

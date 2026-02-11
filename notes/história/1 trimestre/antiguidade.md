@@ -34,8 +34,6 @@
 ---
 # **egito**
 
----
-
 - **localização**
 	-  norte da áfrica; ==**rio nilo**==; crescente fértil
 
@@ -52,8 +50,8 @@
 	- **base:** camponeses *(felás)* e escravizados
 
 - **cultura**
-	- **calendário, **relógio** *(de sol)*
-	- **matemática, engenharia, medicina
+	- **calendário, relógio** *(de sol)*
+	- **matemática, engenharia, medicina**
 	- **hieróglifos**
 
 - **religião**
@@ -62,7 +60,6 @@
 ---
 # **fenícios**
 
----
 
 - **localização**
 	-  atual líbano *(oeste da ásia)*
@@ -84,7 +81,6 @@
 - **religião**
 	- politeísta
 
----
 # **grécia**
 
 - **localização**
@@ -128,9 +124,29 @@
 - **política** *(esparta)*
 	- oligarquia
 
+### guerras:
+- #### guerras médicas (greco-pérsicas)
+	- objetivo: dominar a grécia
+	- liga de delos (atenas)
+	
+- #### guerra do peloponeso
+	- liga de delos (atenas) vs. liga do peloponeso (esparta)
+	- peloponeso (esparta) vitoriosa
+- #### conquista macedônica
+	- domínio sobre a grécia
+
 ---
 
+# **roma**
+- **origem**:
+	- histórica: povos nômades da península itálica se postaram pelo rio tibre
+	- mitológica: rômulo e romeu, criados por lobos após mãe teve relações com o deus da guerra
+- **política**:
+	- monarquia (753a.c -> 509a.c)
+	- república (509a.c -> 27a.c)
+	- império (27a.c - 476)
 
+---
 
 
 

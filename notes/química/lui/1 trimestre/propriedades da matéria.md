@@ -21,3 +21,5 @@ matéria é tudo que possui massa e ocupa volume no espaço.
 	 - álcool 70%, gases (todos)
  - heterogênea: >2 fases (polifásico)
 	 - leite, sangue
+---
+
