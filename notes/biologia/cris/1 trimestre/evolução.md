@@ -19,3 +19,4 @@
 3) **anatomia comparada**
 	- ***órgãos análogos***: mesma função, origens embrionárias diferentes
 	- ***órgãos homólogos***: outra função, origens embrionárias iguais
+	- 
