@@ -6,21 +6,50 @@
       {
         "type": "directory",
         "name": "cris",
-        "children": []
+        "children": [
+          {
+            "type": "directory",
+            "name": "1 trimestre",
+            "children": [
+              {
+                "type": "file",
+                "name": "evolução.md",
+                "path": "biologia/cris/1 trimestre/evolução.md"
+              }
+            ]
+          }
+        ]
       },
       {
         "type": "directory",
         "name": "flavio",
         "children": [
           {
-            "type": "directory",
-            "name": "1 trimestre",
-            "children": []
-          },
-          {
             "type": "file",
             "name": "métodos científicos.md",
             "path": "biologia/flavio/métodos científicos.md"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "filosofia",
+    "children": [
+      {
+        "type": "directory",
+        "name": "1 trimestre",
+        "children": [
+          {
+            "type": "file",
+            "name": "francis bacon.md",
+            "path": "filosofia/1 trimestre/francis bacon.md"
+          },
+          {
+            "type": "file",
+            "name": "o nascimento da filosofia na ciência.md",
+            "path": "filosofia/1 trimestre/o nascimento da filosofia na ciência.md"
           }
         ]
       }
@@ -86,17 +115,6 @@
             ]
           }
         ]
-      },
-      {
-        "type": "directory",
-        "name": "gilmara",
-        "children": [
-          {
-            "type": "directory",
-            "name": "1 trimestre",
-            "children": []
-          }
-        ]
       }
     ]
   },
@@ -130,6 +148,11 @@
         "type": "file",
         "name": "rosa dos ventos.png",
         "path": "midia/rosa dos ventos.png"
+      },
+      {
+        "type": "file",
+        "name": "zonas.png",
+        "path": "midia/zonas.png"
       }
     ]
   },
@@ -150,6 +173,11 @@
             "type": "file",
             "name": "processo de formação de palavras.md",
             "path": "português/1 trimestre/processo de formação de palavras.md"
+          },
+          {
+            "type": "file",
+            "name": "variação da língua portuguesa.md",
+            "path": "português/1 trimestre/variação da língua portuguesa.md"
           }
         ]
       }
@@ -171,6 +199,11 @@
                 "type": "file",
                 "name": "propriedades da matéria.md",
                 "path": "química/lui/1 trimestre/propriedades da matéria.md"
+              },
+              {
+                "type": "file",
+                "name": "transformações da matéria.md",
+                "path": "química/lui/1 trimestre/transformações da matéria.md"
               }
             ]
           }
